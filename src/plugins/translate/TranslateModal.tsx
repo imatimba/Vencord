@@ -21,9 +21,8 @@ import { Margins } from "@utils/margins";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalProps, ModalRoot } from "@utils/modal";
 import { Forms, SearchableSelect, Switch, useEffect, useMemo, useState } from "@webpack/common";
 
-import { Languages } from "./languages";
 import { settings } from "./settings";
-import { cl } from "./utils";
+import { cl, getLanguages } from "./utils";
 
 const LanguageSettingKeys = ["receivedInput", "receivedOutput", "sentInput", "sentOutput"] as const;
 
@@ -32,7 +31,7 @@ function LanguageSelect({ settingsKey, includeAuto }: { settingsKey: typeof Lang
 
     const options = useMemo(
         () => {
-            const options = Object.entries(Languages).map(([value, label]) => ({ value, label }));
+            const options = Object.entries(getLanguages()).map(([value, label]) => ({ value, label }));
             if (!includeAuto)
                 options.shift();
 
